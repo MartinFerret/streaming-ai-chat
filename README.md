@@ -1,9 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Streaming AI Chat — Workshop Demo
 
-## Getting Started
+**A minimal Next.js project demonstrating real-time AI streaming using the Vercel AI SDK.**
 
-First, run the development server:
+---
 
+## ✨ What this project is about
+
+This project shows **the simplest possible pattern** to stream an AI response  
+from a server to the browser **in real time**.
+
+The goal is intentionally narrow:
+
+- send a prompt to an AI endpoint
+- stream the response token-by-token
+- understand and reuse the core streaming mental model
+
+**read chunks → concatenate → render**
+
+No chat history.  
+No complex state.  
+No abstractions hiding the logic.
+
+---
+
+## 🧠 Tech Stack
+
+- Next.js (App Router)
+- React
+- TypeScript
+- Vercel AI SDK
+- OpenAI (via `@ai-sdk/openai`)
+
+---
+
+## 📦 Dependencies
+
+The Vercel AI SDK is **already installed**.
+
+It was added using the following command:
+
+```bash
+npm install ai @ai-sdk/openai
+```
+You do not need to install anything else manually.
+
+---
+
+## 🔐 Environment Variables
+
+Create a `.env` file at the root of the project:
+
+```bash
+OPENAI_API_KEY=your_api_key_here
+```
+
+## 🚀 Getting Started
+
+Run the development server:
 ```bash
 npm run dev
 # or
@@ -14,23 +67,29 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open: http://localhost:3000/
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🧩 Project Structure (simplified)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```txt
+app/
+├─ api/
+│  └─ chat/
+│     └─ route.ts     # Streaming API route (server)
+├─ page.tsx           # Client UI + stream reader
+├─ layout.tsx
+└─ globals.css
+```
 
-## Learn More
+## 🔁 How streaming works (conceptually)
 
-To learn more about Next.js, take a look at the following resources:
+1. The client sends a prompt with fetch()
+2. The server returns a plain text stream
+3. The browser reads the response chunk by chunk
+4. Each chunk is appended to the UI immediately
+5. This is the entire pattern — nothing more.
+  
+## 🧪 Branches
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+`1-start` → starter version (exercise)
+`1-end` → completed solution
