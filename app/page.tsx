@@ -1,6 +1,14 @@
 "use client";
 
+import {useState} from "react";
+
 export default function Page() {
+    // Stores the user input.
+    const [userPrompt, setUserPrompt] = useState("");
+
+    // Stores the streamed assistant output
+    const [ assistantText, setAssistantText] = useState("");
+
     return (
         <main className="sdk">
             <div className="sdk__mark" aria-hidden="true" />
@@ -16,7 +24,10 @@ export default function Page() {
                   <h2 className="chatCard__heading">How can I assist you today?</h2>
                 </header>
 
-                <div className="chatCard__body" />
+                <div className="chatCard__body">
+                    {/* Streamed output */}
+                   <p className="chatCard__text"></p>
+                </div>
 
                 <form className="composer" onSubmit={(e) => e.preventDefault()}>
                     <div className="composer__inputWrap">
